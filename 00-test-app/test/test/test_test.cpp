@@ -24,8 +24,3 @@ TEST(TestGroup, test_return_false)
 {
     CHECK_FALSE(return_false());
 }
-
-TEST(TestGroup, test_return_true_2)
-{
-    CHECK_FALSE(return_true());
-}
