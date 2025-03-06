@@ -5,7 +5,7 @@ This is a testproject for templating for libraries
 prepare the build directory 
 
 ```
-cmake -B build .
+cmake -B build src
 ```
 
 build the project
