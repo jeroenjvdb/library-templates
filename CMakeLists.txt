@@ -4,6 +4,9 @@ project(testing_libraries)
 
 include(CTest)
 
+# include(GNUInstallDirs)
+
+
 # add cpputest to the project
 # This can be done in a seperate cmake module
 add_library(imp_cpputest STATIC IMPORTED)

@@ -1,14 +1,14 @@
 # Define library. Only source files here!
-project(lib{{cookiecutter.project_name}} VERSION 0.1 LANGUAGES C)
+project(libutils VERSION 0.1 LANGUAGES C)
 
-add_library({{cookiecutter.project_name}}
-    src/{{cookiecutter.module_name}}.c
+add_library(utils
+    src/logger.c
 )
 
 # Define headers for this library. PUBLIC headers are used for
 # compiling the library, and will be added to consumers' build
 # paths.
-target_include_directories({{cookiecutter.project_name}} PUBLIC
+target_include_directories(utils PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
     $<INSTALL_INTERFACE:include>
     PRIVATE src
@@ -16,17 +16,17 @@ target_include_directories({{cookiecutter.project_name}} PUBLIC
 
 # If we have compiler requirements for this library, list them
 # here
-target_compile_features({{cookiecutter.project_name}}
+target_compile_features(utils
     PUBLIC cxx_auto_type
     PRIVATE cxx_variadic_templates
 )
 
 # Depend on a library that we defined in the top-level file
-target_link_libraries({{cookiecutter.project_name}}
+target_link_libraries(utils
 )
 
 # 'make install' to the correct locations (provided by GNUInstallDirs).
-install(TARGETS {{cookiecutter.project_name}} EXPORT MyLibraryConfig
+install(TARGETS utils EXPORT MyLibraryConfig
     ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
     LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})  # This is for Windows
@@ -38,18 +38,15 @@ install(TARGETS {{cookiecutter.project_name}} EXPORT MyLibraryConfig
 install(EXPORT MyLibraryConfig DESTINATION share/MyLibrary/cmake)
 
 # This makes the project importable from the build directory
-export(TARGETS {{cookiecutter.project_name}} FILE MyLibraryConfig.cmake)
+export(TARGETS utils FILE MyLibraryConfig.cmake)
 
 # Every library has unit tests, of course
-add_executable(test{{cookiecutter.project_name}}
-    test/all_tests.cpp
-    test/test_{{cookiecutter.module_name}}.cpp
+add_executable(testutils
+    test/test_logger.cpp
 )
 
-target_link_libraries(test{{cookiecutter.project_name}}
-    {{cookiecutter.project_name}}
-    imp_cpputest
-    imp_cpputestExt
+target_link_libraries(testutils
+    utils
 )
 
-add_test(test{{cookiecutter.project_name}} test{{cookiecutter.project_name}})
+add_test(testutils testutils)

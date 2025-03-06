@@ -32,7 +32,7 @@ install(TARGETS utils EXPORT MyLibraryConfig
     ARCHIVE  DESTINATION ${CMAKE_INSTALL_LIBDIR}
     LIBRARY  DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME  DESTINATION ${CMAKE_INSTALL_BINDIR})  # This is for Windows
-# install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
 # This makes the project importable from the install directory
 # Put config file in per-project dir (name MUST match), can also
@@ -40,7 +40,7 @@ install(TARGETS utils EXPORT MyLibraryConfig
 install(EXPORT MyLibraryConfig DESTINATION share/MyLibrary/cmake)
 
 # This makes the project importable from the build directory
-export(TARGETS utils FILE MyLibraryConfig.cmake)
+export(TARGETS utils FILE utilsConfig.cmake)
 
 # Every library has unit tests, of course
 # add_executable(testlib
