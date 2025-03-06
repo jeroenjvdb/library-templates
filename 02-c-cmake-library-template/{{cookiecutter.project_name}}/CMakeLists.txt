@@ -1,5 +1,5 @@
 # Define library. Only source files here!
-project(lib{{cookiecutter.project_name}} VERSION 0.1 LANGUAGES C)
+project(lib{{cookiecutter.project_name}} VERSION 0.1 LANGUAGES C CXX)
 
 add_library({{cookiecutter.project_name}}
     src/{{cookiecutter.module_name}}.c
